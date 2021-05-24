@@ -1,0 +1,95 @@
+version: "2.0"
+
+intents:
+- greet
+- deny
+- request_names
+- goodbye
+- affirm
+- mood_great
+- mood_unhappy
+- bot_challenge
+- open_incident
+
+slots:
+  first_name:
+    type: text
+    influence_conversation: true
+  last_name:
+    type: text
+    influence_conversation: true
+  Bank_name:
+    type: text
+    influence_conversation: true
+  Amplitude_version:
+    type: text
+    influence_conversation: true
+  Problem_description:
+    type: text
+    influence_conversation: true
+  Problem_title:
+    type: text
+    influence_conversation: true
+  Impact:
+    type: text
+    influence_conversation: true
+
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_ask_first_name:
+  - text: What is your first name?
+  utter_ask_last_name:
+  - text: What is your last name?
+  utter_ask_Problem_title:
+  - text : What should we use for the title of this incident?
+  utter_ask_Problem_description:
+  - text : What is the problem description for the issue?
+  utter_ask_Impact:
+  - text: What is the impact of this issue?
+  utter_submit:
+  - text: Ok. Thanks!
+  utter_slots_values:
+  - text: I will remember that your name is {first_name} {last_name}!
+  utter_slots_incident_values:
+  - text: "I will open an incident with the following details:
+            \n Bank's name: {Bank_name}
+            \n Amplitude's version: {Amplitude_version}
+            \n Problem's description: {Problem_description}
+            \n Problem's title: {Problem_title}
+            \n Impact: {Impact}"
+
+
+
+actions:
+- utter_greet
+- utter_slots_values
+- utter_slots_incident_values
+- utter_submit
+- action_do_sth
+
+forms:
+  name_form:
+    first_name:
+    - type: from_text
+    last_name:
+    - type: from_text
+  open_incident_form:
+    Problem_description:
+    - type: from_text
+    Problem_title:
+    - type: from_text
+    Impact:
+    - type: from_text
+
