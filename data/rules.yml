@@ -30,19 +30,37 @@ rules:
   - action: utter_submit
   - action: utter_slots_values
 
+#- rule: Activate form2
+#  steps:
+#  - intent: open_incident
+#  - action: open_incident_form
+#  - active_loop: open_incident_form
+
 - rule: Activate form2
   steps:
-  - intent: open_incident
-  - action: open_incident_form
-  - active_loop: open_incident_form
+  - intent: anomaly_report
+  - action: anomaly_report_form
+  - active_loop: anomaly_report_form
+
+#- rule: Submit form2
+#  condition:
+#  - active_loop: open_incident_form
+#  steps:
+#  - action: open_incident_form
+#  - active_loop: null
+#  - slot_was_set:
+#    - requested_slot: null
+#  - action: utter_submit
+#  - action: utter_slots_incident_values
 
 - rule: Submit form2
   condition:
-  - active_loop: open_incident_form
+  - active_loop: anomaly_report_form
   steps:
-  - action: open_incident_form
+  - action: anomaly_report_form
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
   - action: utter_submit
   - action: utter_slots_incident_values
+

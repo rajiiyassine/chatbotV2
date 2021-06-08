@@ -312,3 +312,25 @@ nlu:
     - give name
     - you need to know my name
     - do you know my name?
+#new conversations
+- intent: anomaly_report
+  examples: |
+    - i want to open an anomaly report type DIM
+
+- intent: incident_report
+  examples: |
+    - i want to open an incident report type DIM
+
+- intent: information_request
+  examples: |
+    - i want to open an information request type DIM
+
+- intent: evolution_request
+  examples: |
+    - i want to open an evolution request type DIM
+
+- intent: PS_Prestation
+  examples: |
+    - i want to open a PS prestation type DIM
+
+

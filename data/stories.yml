@@ -51,27 +51,112 @@ stories:
   - action: utter_submit
   - action: utter_slots_values
 
+#- story: interactive_story_2
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: open_incident
+#  - action: open_incident_form
+#  - active_loop: open_incident_form
+#  - slot_was_set:
+#    - requested_slot: Problem_description
+#  - slot_was_set:
+#    - Problem_description: problem
+#  - slot_was_set:
+#    - requested_slot: Problem_title
+#  - slot_was_set:
+#    - Problem_title: title
+#  - slot_was_set:
+#    - requested_slot: Impact
+#  - slot_was_set:
+#    - Impact: high
+#  - slot_was_set:
+#    - requested_slot: null
+#  - active_loop: null
+#  - action: utter_submit
+#  - action: utter_slots_incident_values
+
 - story: interactive_story_2
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: open_incident
-  - action: open_incident_form
-  - active_loop: open_incident_form
-  - slot_was_set:
-    - requested_slot: Problem_description
-  - slot_was_set:
-    - Problem_description: problem
-  - slot_was_set:
-    - requested_slot: Problem_title
-  - slot_was_set:
-    - Problem_title: title
+  - intent: anomaly_report
+  - action: anomaly_report_form
+  - active_loop: anomaly_report_form
   - slot_was_set:
     - requested_slot: Impact
   - slot_was_set:
-    - Impact: high
+    - Impact: problem
+  - slot_was_set:
+    - requested_slot: Descrition
+  - slot_was_set:
+    - Descrition: title
+  - slot_was_set:
+    - requested_slot: Bloquant
+  - slot_was_set:
+    - Bloquant: high
+  - slot_was_set:
+    - requested_slot: Module
+  - slot_was_set:
+    - Module: high
+  - slot_was_set:
+    - requested_slot: Libelle
+  - slot_was_set:
+    - Libelle: high
+  - slot_was_set:
+    - requested_slot: Resultat_attendu
+  - slot_was_set:
+    - Resultat_attendu: high
+  - slot_was_set:
+    - requested_slot: Objet_technique
+  - slot_was_set:
+    - Objet_technique: high
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
   - action: utter_submit
   - action: utter_slots_incident_values
+
+- story: go the anomaly form
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: open_incident
+  - action: utter_type_DIM
+  - intent: anomaly_report
+  - action: anomaly_report_form
+  - active_loop: anomaly_report_form
+  - slot_was_set:
+    - requested_slot: Impact
+  - slot_was_set:
+    - Impact: problem
+  - slot_was_set:
+    - requested_slot: Descrition
+  - slot_was_set:
+    - Descrition: title
+  - slot_was_set:
+    - requested_slot: Bloquant
+  - slot_was_set:
+    - Bloquant: high
+  - slot_was_set:
+    - requested_slot: Module
+  - slot_was_set:
+    - Module: high
+  - slot_was_set:
+    - requested_slot: Libelle
+  - slot_was_set:
+    - Libelle: high
+  - slot_was_set:
+    - requested_slot: Resultat_attendu
+  - slot_was_set:
+    - Resultat_attendu: high
+  - slot_was_set:
+    - requested_slot: Objet_technique
+  - slot_was_set:
+    - Objet_technique: high
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_incident_values
+

@@ -10,6 +10,11 @@ intents:
 - mood_unhappy
 - bot_challenge
 - open_incident
+- anomaly_report
+- incident_report
+- information_request
+- evolution_request
+- PS_Prestation
 
 slots:
   first_name:
@@ -24,13 +29,25 @@ slots:
   Amplitude_version:
     type: text
     influence_conversation: true
-  Problem_description:
+  Descrition:
     type: text
     influence_conversation: true
-  Problem_title:
+  Libelle:
     type: text
     influence_conversation: true
   Impact:
+    type: text
+    influence_conversation: true
+  Objet_technique:
+    type: text
+    influence_conversation: true
+  Bloquant:
+    type: text
+    influence_conversation: true
+  Resultat_attendu:
+    type: text
+    influence_conversation: true
+  Module:
     type: text
     influence_conversation: true
 
@@ -48,13 +65,18 @@ responses:
   - text: Bye
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
+  utter_type_DIM:
+  - text: What's the type of your DIM ?
+    buttons:
+      - title: "Anomaly report"
+        payload: "/anomaly_report"
   utter_ask_first_name:
   - text: What is your first name?
   utter_ask_last_name:
   - text: What is your last name?
-  utter_ask_Problem_title:
+  utter_ask_Libelle:
   - text : What should we use for the title of this incident?
-  utter_ask_Problem_description:
+  utter_ask_Descrition:
   - text : What is the problem description for the issue?
   utter_ask_Impact:
   - text: What is the impact of this issue?
@@ -63,13 +85,12 @@ responses:
   utter_slots_values:
   - text: I will remember that your name is {first_name} {last_name}!
   utter_slots_incident_values:
-  - text: "I will open an incident with the following details:
-            \n Bank's name: {Bank_name}
-            \n Amplitude's version: {Amplitude_version}
-            \n Problem's description: {Problem_description}
-            \n Problem's title: {Problem_title}
-            \n Impact: {Impact}"
-
+  - text: "I will open an incident with the following details: \n
+            Bank's name: {Bank_name} \n
+            Amplitude's version: {Amplitude_version} \n
+            Problem's description: {Descrition} \n
+            Problem's title: {Libelle} \n
+            Impact: {Impact}"
 
 
 actions:
@@ -85,11 +106,26 @@ forms:
     - type: from_text
     last_name:
     - type: from_text
-  open_incident_form:
-    Problem_description:
-    - type: from_text
-    Problem_title:
-    - type: from_text
-    Impact:
-    - type: from_text
+#  open_incident_form:
+#    Problem_description:
+#    - type: from_text
+#    Problem_title:
+#    - type: from_text
+#    Impact:
+#    - type: from_text
+  anomaly_report_form:
+    Impact :
+      - type: from_text
+    Descrition :
+      - type: from_text
+    Bloquant :
+      - type: from_text
+    Module :
+      - type: from_text
+    Libelle :
+      - type: from_text
+    Resultat_attendu :
+      - type: from_text
+    Objet_technique :
+      - type: from_text
 
