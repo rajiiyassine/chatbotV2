@@ -70,6 +70,14 @@ responses:
     buttons:
       - title: "Anomaly report"
         payload: "/anomaly_report"
+      - title: "Incident report"
+        payload: "/anomaly_report"
+      - title: "Information request"
+        payload: "/information_request"
+      - title: "Evolution request"
+        payload: "/evolution_request"
+      - title: "PS prestation"
+        payload: "/PS_Prestation"
   utter_ask_first_name:
   - text: What is your first name?
   utter_ask_last_name:
@@ -88,10 +96,20 @@ responses:
   - text: "I will open an incident with the following details: \n
             Bank's name: {Bank_name} \n
             Amplitude's version: {Amplitude_version} \n
-            Problem's description: {Descrition} \n
+            Other technical object: {Objet_technique} \n
+            Impact: {Impact} \n
+            blocking: {Bloquant} \n
+            Module: {Module} \n
             Problem's title: {Libelle} \n
-            Impact: {Impact}"
-
+            Problem's description: {Descrition} \n"
+  utter_slots_ps_values:
+  - text: "I will open a PS prestation DIM with the following details: \n
+            Bank's name: {Bank_name} \n
+            Amplitude's version: {Amplitude_version} \n
+            Other technical object: {Objet_technique} \n
+            Module: {Module} \n
+            Problem's title: {Libelle} \n
+            Problem's description: {Descrition} \n"
 
 actions:
 - utter_greet
@@ -99,6 +117,8 @@ actions:
 - utter_slots_incident_values
 - utter_submit
 - action_do_sth
+- action_authenticated_user
+- utter_slots_ps_values
 
 forms:
   name_form:
@@ -128,4 +148,41 @@ forms:
       - type: from_text
     Objet_technique :
       - type: from_text
+  information_request_form:
+    Impact :
+      - type: from_text
+    Bloquant :
+      - type: from_text
+    Module :
+      - type: from_text
+    Objet_technique :
+      - type: from_text
+    Descrition :
+      - type: from_text
+    Libelle :
+      - type: from_text
+  evolution_request_form:
+    Impact :
+      - type: from_text
+    Bloquant :
+      - type: from_text
+    Module :
+      - type: from_text
+    Objet_technique :
+      - type: from_text
+    Descrition :
+      - type: from_text
+    Libelle :
+      - type: from_text
+  PS_Prestation_form:
+    Module :
+      - type: from_text
+    Objet_technique :
+      - type: from_text
+    Descrition :
+      - type: from_text
+    Libelle :
+      - type: from_text
+
+
 

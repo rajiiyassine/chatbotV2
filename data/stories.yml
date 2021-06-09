@@ -5,14 +5,14 @@ stories:
 - story: happy path
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: action_authenticated_user
   - intent: mood_great
   - action: utter_happy
 
 - story: sad path 1
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: action_authenticated_user
   - intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
@@ -22,7 +22,7 @@ stories:
 - story: sad path 2
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: action_authenticated_user
   - intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
@@ -32,7 +32,7 @@ stories:
 - story: interactive_story_1
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: action_authenticated_user
   - intent: request_names
   - action: name_form
   - active_loop: name_form
@@ -79,7 +79,7 @@ stories:
 - story: interactive_story_2
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: action_authenticated_user
   - intent: anomaly_report
   - action: anomaly_report_form
   - active_loop: anomaly_report_form
@@ -120,7 +120,7 @@ stories:
 - story: go the anomaly form
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: action_authenticated_user
   - intent: open_incident
   - action: utter_type_DIM
   - intent: anomaly_report
@@ -159,4 +159,101 @@ stories:
   - active_loop: null
   - action: utter_submit
   - action: utter_slots_incident_values
+
+- story: go the information form
+  steps:
+  - intent: greet
+  - action: action_authenticated_user
+  - intent: open_incident
+  - action: utter_type_DIM
+  - intent: information_request
+  - action: information_request_form
+  - active_loop: information_request_form
+  - slot_was_set:
+    - requested_slot: Impact
+  - slot_was_set:
+    - Impact: problem
+  - slot_was_set:
+    - requested_slot: Bloquant
+  - slot_was_set:
+    - Bloquant: high
+  - slot_was_set:
+    - requested_slot: Module
+  - slot_was_set:
+    - Module: high
+  - slot_was_set:
+    - requested_slot: Descrition
+  - slot_was_set:
+    - Descrition: title
+  - slot_was_set:
+    - requested_slot: Libelle
+  - slot_was_set:
+    - Libelle: high
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_incident_values
+
+- story: go the evolution form
+  steps:
+  - intent: greet
+  - action: action_authenticated_user
+  - intent: open_incident
+  - action: utter_type_DIM
+  - intent: evolution_request
+  - action: evolution_request_form
+  - active_loop: evolution_request_form
+  - slot_was_set:
+    - requested_slot: Impact
+  - slot_was_set:
+    - Impact: problem
+  - slot_was_set:
+    - requested_slot: Bloquant
+  - slot_was_set:
+    - Bloquant: high
+  - slot_was_set:
+    - requested_slot: Module
+  - slot_was_set:
+    - Module: high
+  - slot_was_set:
+    - requested_slot: Descrition
+  - slot_was_set:
+    - Descrition: title
+  - slot_was_set:
+    - requested_slot: Libelle
+  - slot_was_set:
+    - Libelle: high
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_incident_values
+
+- story: go the PS form
+  steps:
+  - intent: greet
+  - action: action_authenticated_user
+  - intent: open_incident
+  - action: utter_type_DIM
+  - intent: PS_Prestation
+  - action: PS_Prestation_form
+  - active_loop: PS_Prestation_form
+  - slot_was_set:
+    - requested_slot: Module
+  - slot_was_set:
+    - Module: high
+  - slot_was_set:
+    - requested_slot: Descrition
+  - slot_was_set:
+    - Descrition: title
+  - slot_was_set:
+    - requested_slot: Libelle
+  - slot_was_set:
+    - Libelle: high
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_ps_values
 

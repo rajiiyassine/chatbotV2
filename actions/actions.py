@@ -12,6 +12,7 @@ import csv
 from csv import reader
 from csv import DictReader
 from rasa_sdk.events import SlotSet
+import requests
 import pandas as pd
 
 #
@@ -70,3 +71,27 @@ class ActionHelloWorld(Action):
                                 break
                     break
         return [SlotSet("Bank_name", row2['LIBELLE LONG']), SlotSet("Amplitude_version", row2['VERSION EMPLITUDE'])]
+
+
+class Authentication(Action):
+
+    def name(self) -> Text:
+        return "action_authenticated_user"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # Calling api to get credentials of the connected user
+        data = {}
+        data['botkey'] = "Akaya1234"
+        url = "http://localhost:9000/user/botapi"
+        response = requests.post(url=url, json=data)
+        res = response.json()
+
+        if (response.status_code == 200 and res['message'] == 'success'):
+            greet = 'Hello ' + res['username']
+            dispatcher.utter_message(greet)
+        else:
+            dispatcher.utter_message('Hello, You are not authenticated')
+        return []

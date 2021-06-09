@@ -36,12 +36,6 @@ rules:
 #  - action: open_incident_form
 #  - active_loop: open_incident_form
 
-- rule: Activate form2
-  steps:
-  - intent: anomaly_report
-  - action: anomaly_report_form
-  - active_loop: anomaly_report_form
-
 #- rule: Submit form2
 #  condition:
 #  - active_loop: open_incident_form
@@ -52,6 +46,12 @@ rules:
 #    - requested_slot: null
 #  - action: utter_submit
 #  - action: utter_slots_incident_values
+
+- rule: Activate form2
+  steps:
+  - intent: anomaly_report
+  - action: anomaly_report_form
+  - active_loop: anomaly_report_form
 
 - rule: Submit form2
   condition:
@@ -64,3 +64,53 @@ rules:
   - action: utter_submit
   - action: utter_slots_incident_values
 
+- rule: Activate information form
+  steps:
+  - intent: information_request
+  - action: information_request_form
+  - active_loop: information_request_form
+
+- rule: Submit information form
+  condition:
+  - active_loop: information_request_form
+  steps:
+  - action: information_request_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: utter_slots_incident_values
+
+- rule: Activate evolution form
+  steps:
+  - intent: evolution_request
+  - action: evolution_request_form
+  - active_loop: evolution_request_form
+
+- rule: Submit evolution form
+  condition:
+  - active_loop: evolution_request_form
+  steps:
+  - action: evolution_request_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: utter_slots_incident_values
+
+- rule: Activate PS form
+  steps:
+  - intent: PS_Prestation
+  - action: PS_Prestation_form
+  - active_loop: PS_Prestation_form
+
+- rule: Submit PS form
+  condition:
+  - active_loop: PS_Prestation_form
+  steps:
+  - action: PS_Prestation_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: utter_slots_incident_values
