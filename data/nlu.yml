@@ -77,62 +77,18 @@ nlu:
      - toodle-oo
      - byr
 
-- intent: affirm
+- intent: inform
   examples: |
-    - yes
-    - yes please
-    - yes I would
-    - please do
-    - yup
-    - yep
-    - that's right
-    - indeed
-    - Yes, please
-    - yeah
-    - sure
-    - yes thanks
-    - That would be great
-    - YES
-    - YUP
-    - Yea
-    - Yeah
-    - Yeah sure
-    - Yep
-    - Yep that's fine
-    - Yep!
-    - Yepp
-    - Yes
-    - Yes I do
-    - Yes please
-    - Yes please!
-    - Yes, I accept
-
-- intent: deny
-  examples: |
-    - no
-    - nope
-    - no thanks
-    - not that one
-    - don't use that
-    - please no
-    - no don't do that
-    - no, use abraham.lincoln@example.com
-    - Neither
-    - Never
-    - Nevermind
-    - No thank you
-    - No, not really.
-    - No, thank you
-    - No.
-    - Nopes
-    - Not really
-    - absolutely not
-    - decline
-    - definitely not
-    - deny
-    - na
-    - nah
-    - nah I'm good
+    - [low](priority)
+    - [high](priority)
+    - it should be a [low](priority) priority
+    - it should be [high](priority)
+    - [escalated]{"entity": "priority", "value": "high"}
+    - [escalate]{"entity": "priority", "value": "high"}
+    - [super high](priority)
+    - the priority is [high](priority)
+    - [urgent]{"entity": "priority", "value": "high"}
+    - [critical]{"entity": "priority", "value": "high"}
 
 - intent: mood_great
   examples: |
@@ -305,7 +261,61 @@ nlu:
     - help pls
     - help?
     - hep me
-
+- intent: affirm
+  examples: |
+    - yes
+    - yes please
+    - yes I would
+    - please do
+    - yup
+    - yep
+    - that's right
+    - indeed
+    - Yes, please
+    - yeah
+    - sure
+    - yes thanks
+    - That would be great
+    - YES
+    - YUP
+    - Yea
+    - Yeah
+    - Yeah sure
+    - Yep
+    - Yep that's fine
+    - Yep!
+    - Yepp
+    - Yes
+    - Yes I do
+    - Yes please
+    - Yes please!
+    - Yes, I accept
+- intent: deny
+  examples: |
+    - no
+    - nope
+    - no thanks
+    - not that one
+    - don't use that
+    - please no
+    - no don't do that
+    - no, use abraham.lincoln@example.com
+    - Neither
+    - Never
+    - Nevermind
+    - No thank you
+    - No, not really.
+    - No, thank you
+    - No.
+    - Nopes
+    - Not really
+    - absolutely not
+    - decline
+    - definitely not
+    - deny
+    - na
+    - nah
+    - nah I'm good
 - intent: request_names
   examples: |
     - i want to give you my name
@@ -332,5 +342,12 @@ nlu:
 - intent: PS_Prestation
   examples: |
     - i want to open a PS prestation type DIM
+
+- synonym: high
+  examples: |
+    - urgent
+    - really important
+    - escalated
+    - escalate
 
 

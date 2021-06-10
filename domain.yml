@@ -15,6 +15,7 @@ intents:
 - information_request
 - evolution_request
 - PS_Prestation
+- inform
 
 slots:
   first_name:
@@ -42,7 +43,7 @@ slots:
     type: text
     influence_conversation: true
   Bloquant:
-    type: text
+    type: bool
     influence_conversation: true
   Resultat_attendu:
     type: text
@@ -87,7 +88,23 @@ responses:
   utter_ask_Descrition:
   - text : What is the problem description for the issue?
   utter_ask_Impact:
-  - text: What is the impact of this issue?
+  - text: "What is the impact of this issue?"
+    buttons:
+      - title: Minor
+        payload: /inform{"priority":"low"}
+      - title: Severe
+        payload: /inform{"priority":"high"}
+  utter_ask_Objet_technique:
+  - text: Is there any technical objects in relation with your issue you want to mention ?
+  utter_ask_Module:
+  - text: Your DIM belongs to wich module ?
+  utter_Bloquant:
+  - text: "Does this issue blocks your normal workflow ?"
+    buttons:
+      - title: Yes
+        payload: /affirm
+      - title: No
+        payload: /deny
   utter_submit:
   - text: Ok. Thanks!
   utter_slots_values:
@@ -123,9 +140,9 @@ actions:
 forms:
   name_form:
     first_name:
-    - type: from_text
+      - type: from_text
     last_name:
-    - type: from_text
+      - type: from_text
 #  open_incident_form:
 #    Problem_description:
 #    - type: from_text
@@ -134,55 +151,73 @@ forms:
 #    Impact:
 #    - type: from_text
   anomaly_report_form:
-    Impact :
+    Impact:
+      - type: from_entity
+        entity: priority
+    Descrition:
       - type: from_text
-    Descrition :
+    Bloquant:
       - type: from_text
-    Bloquant :
+      - type: from_intent
+        intent: affirm
+        value: true
+      - type: from_intent
+        intent: deny
+        value: false
+    Module:
       - type: from_text
-    Module :
+    Libelle:
       - type: from_text
-    Libelle :
+    Resultat_attendu:
       - type: from_text
-    Resultat_attendu :
-      - type: from_text
-    Objet_technique :
+    Objet_technique:
       - type: from_text
   information_request_form:
-    Impact :
+    Impact:
+      - type: from_entity
+        entity: priority
+    Bloquant:
       - type: from_text
-    Bloquant :
+      - type: from_intent
+        intent: affirm
+        value: true
+      - type: from_intent
+        intent: deny
+        value: false
+    Module:
       - type: from_text
-    Module :
+    Objet_technique:
       - type: from_text
-    Objet_technique :
+    Descrition:
       - type: from_text
-    Descrition :
-      - type: from_text
-    Libelle :
+    Libelle:
       - type: from_text
   evolution_request_form:
-    Impact :
+    Impact:
+      - type: from_entity
+        entity: priority
+    Bloquant:
       - type: from_text
-    Bloquant :
+      - type: from_intent
+        intent: affirm
+        value: true
+      - type: from_intent
+        intent: deny
+        value: false
+    Module:
       - type: from_text
-    Module :
+    Objet_technique:
       - type: from_text
-    Objet_technique :
+    Descrition:
       - type: from_text
-    Descrition :
-      - type: from_text
-    Libelle :
+    Libelle:
       - type: from_text
   PS_Prestation_form:
-    Module :
+    Module:
       - type: from_text
-    Objet_technique :
+    Objet_technique:
       - type: from_text
-    Descrition :
+    Descrition:
       - type: from_text
-    Libelle :
+    Libelle:
       - type: from_text
-
-
-
