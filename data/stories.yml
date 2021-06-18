@@ -78,8 +78,6 @@ stories:
 
 - story: interactive_story_2
   steps:
-  - intent: greet
-  - action: action_authenticated_user
   - intent: anomaly_report
   - action: anomaly_report_form
   - active_loop: anomaly_report_form
@@ -119,8 +117,6 @@ stories:
 
 - story: go the anomaly form
   steps:
-  - intent: greet
-  - action: action_authenticated_user
   - intent: open_incident
   - action: utter_type_DIM
   - intent: anomaly_report
@@ -162,8 +158,6 @@ stories:
 
 - story: go the information form
   steps:
-  - intent: greet
-  - action: action_authenticated_user
   - intent: open_incident
   - action: utter_type_DIM
   - intent: information_request
@@ -197,8 +191,6 @@ stories:
 
 - story: go the evolution form
   steps:
-  - intent: greet
-  - action: action_authenticated_user
   - intent: open_incident
   - action: utter_type_DIM
   - intent: evolution_request

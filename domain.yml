@@ -17,6 +17,9 @@ intents:
 - PS_Prestation
 - inform
 
+entities:
+- priority
+
 slots:
   first_name:
     type: text
@@ -79,6 +82,8 @@ responses:
         payload: "/evolution_request"
       - title: "PS prestation"
         payload: "/PS_Prestation"
+      - title: "Plus d'information sur les types des DIM"
+        payload:
   utter_ask_first_name:
   - text: What is your first name?
   utter_ask_last_name:

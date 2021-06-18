@@ -15,6 +15,7 @@ from rasa_sdk.events import SlotSet
 import requests
 import pandas as pd
 
+usr = ""
 #
 # class ActionHelloWorld(Action):
 #
@@ -28,6 +29,30 @@ import pandas as pd
 #         dispatcher.utter_message(text="Hello World!")
 #
 #         return []
+
+class Authentication(Action):
+
+    def name(self) -> Text:
+        return "action_authenticated_user"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # Calling api to get credentials of the connected user
+        data = {}
+        data['botkey'] = "ikbhizeghizehhzefSDfsd964768kh"
+        url = "http://localhost:9000/user/botapi"
+        response = requests.post(url=url, json=data)
+        res = response.json()
+        if (response.status_code == 200 and res['message'] == 'success'):
+            greet = 'Hello ' + res['username']
+            dispatcher.utter_message(greet)
+            global usr
+            usr = res['username']
+        else:
+            dispatcher.utter_message('Hello, You are not authenticated')
+        return []
 
 class ActionHelloWorld(Action):
 
@@ -54,7 +79,7 @@ class ActionHelloWorld(Action):
         with open('Clients.csv', 'r') as csvfile:
             csv_dict_reader = DictReader(csvfile)
             for row in csv_dict_reader:
-                if(row['NOM'] == nom and row['PRENOM'] == prenom ):
+                if(row['CODE-INTERLOCUTEURE'] == usr ):
                     with open('Banques.csv', 'r') as Ncsvfile:
                         csv_dict_reader_2 = DictReader(Ncsvfile)
                         for row2 in csv_dict_reader_2:
@@ -73,25 +98,3 @@ class ActionHelloWorld(Action):
         return [SlotSet("Bank_name", row2['LIBELLE LONG']), SlotSet("Amplitude_version", row2['VERSION EMPLITUDE'])]
 
 
-class Authentication(Action):
-
-    def name(self) -> Text:
-        return "action_authenticated_user"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        # Calling api to get credentials of the connected user
-        data = {}
-        data['botkey'] = "Akaya1234"
-        url = "http://localhost:9000/user/botapi"
-        response = requests.post(url=url, json=data)
-        res = response.json()
-
-        if (response.status_code == 200 and res['message'] == 'success'):
-            greet = 'Hello ' + res['username']
-            dispatcher.utter_message(greet)
-        else:
-            dispatcher.utter_message('Hello, You are not authenticated')
-        return []
