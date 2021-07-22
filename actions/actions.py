@@ -79,7 +79,7 @@ class ActionHelloWorld(Action):
         with open('Clients.csv', 'r') as csvfile:
             csv_dict_reader = DictReader(csvfile)
             for row in csv_dict_reader:
-                if(row['CODE-INTERLOCUTEURE'] == usr ):
+                if(usr == row['CODE-INTERLOCUTEURE'] ):
                     with open('Banques.csv', 'r') as Ncsvfile:
                         csv_dict_reader_2 = DictReader(Ncsvfile)
                         for row2 in csv_dict_reader_2:
@@ -95,6 +95,8 @@ class ActionHelloWorld(Action):
                                 dispatcher.utter_message(text=msg)
                                 break
                     break
-        return [SlotSet("Bank_name", row2['LIBELLE LONG']), SlotSet("Amplitude_version", row2['VERSION EMPLITUDE'])]
+        return []
+        # return [SlotSet("Bank_name", row2['LIBELLE LONG']), SlotSet("Amplitude_version", row2['VERSION EMPLITUDE'])]
+
 
 

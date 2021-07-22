@@ -5,14 +5,14 @@ stories:
 - story: happy path
   steps:
   - intent: greet
-  - action: action_authenticated_user
+  - action: action_do_sth
   - intent: mood_great
   - action: utter_happy
 
 - story: sad path 1
   steps:
   - intent: greet
-  - action: action_authenticated_user
+  - action: action_do_sth
   - intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
@@ -22,7 +22,7 @@ stories:
 - story: sad path 2
   steps:
   - intent: greet
-  - action: action_authenticated_user
+  - action: action_do_sth
   - intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
@@ -224,8 +224,6 @@ stories:
 
 - story: go the PS form
   steps:
-  - intent: greet
-  - action: action_authenticated_user
   - intent: open_incident
   - action: utter_type_DIM
   - intent: PS_Prestation
